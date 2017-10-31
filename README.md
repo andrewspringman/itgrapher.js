@@ -25,7 +25,7 @@ This project is licensed under the MIT License
 
 ## To do
 
-* Put on GitHub
+* ~~Put on GitHub~~
 * Give examples in callbacks
 * Render in Web Worker (with progress bar)
 * User input
