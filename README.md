@@ -4,7 +4,7 @@ Iterative Transformation Grapher JavaScript
 
 ## Getting Started
 
-Put these file in a location where you can serve them with an HTTPS server and then browse to itgrapher.html.
+Put these files in a location where you can serve them with an HTTPS server and then browse to itgrapher.html.  (It will work with an HTTP server, but you won't be able to save it as a Progressive Web App).  
 
 ## Authors
 
@@ -27,6 +27,11 @@ This project is licensed under the MIT License
 
 * ~~Put on GitHub~~
 * ~~Give examples in callbacks~~
+* Open results in separate window
+* Test app cache with [SSL in MAMP](https://stackoverflow.com/questions/6318467/configuring-mamp-for-ssl)
+* Figure out window re-sizing logic
+* Support Save Image for iOS
+* Use loop for parameters to allow arbitrary parameters.
 * Render in Web Worker (with progress bar)
 * User input
 * Local storage

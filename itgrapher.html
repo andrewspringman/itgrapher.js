@@ -5,15 +5,19 @@
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="itgrapher.js"></script>
     </head>
-    <body style="margin: 0; padding: 0; background-color:black; color:white;">
+    <body style="margin: 0; padding: 0; background-color:black; color:white;" manifest="manifest.appcache">
         <!--img id="spinner" style="display:none;" src="spinner.gif"-->
         <canvas id="canvas"></canvas>
         <h1>ITGrapher.js</h1>
         <h2>Iterative Transformation Grapher JavaScript</h2>
         Click on a link below to render different images.
         <ul>
-            <li><a href="javascript:graph_it();">Default Settings</a></li>
-            <li><a href="javascript:graph_it({'scale':0.025/4/2});">Zoom in (x2)</a></li>
+            <li><a href="javascript:graph_it();"
+            >Default Settings</a></li>
+            
+            <li><a href="javascript:graph_it({'scale':0.025/4/2});"
+            >Zoom in (x2)</a></li>
+            
             <li><a href="javascript:graph_it({'color_map_callback':
                 function(colors)
                 {            
@@ -25,47 +29,120 @@
 
                 }
             });">Greyscale</a></li>
+            
             <li><a href="javascript:graph_it({'red_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'green_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'blue_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'green_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'blue_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
             });">Thresholds</a></li>
+            
             <li><a href="javascript:graph_it({'red_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'green_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'blue_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'red_iteration':4, 'green_iteration':4, 'blue_iteration':4
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'green_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'blue_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'red_iteration':4, 'green_iteration':4, 'blue_iteration':4
             });">Last Iteration, Threshold</a></li>
+            
             <li><a href="javascript:graph_it({'red_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'green_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'blue_callback':function(o){
-                    return (o.velocity > o.luminosity) ? 0 : 255;
-                }
-            ,'red_iteration':12
-            ,'green_iteration':12
-            ,'blue_iteration':12
-            ,'iterations':12
-            ,'samples_per_pixel':3
-            ,'scale':0.025/4/3
-        });">Last Iteration, Threshold, Higher Iterations, Oversampled, Zoom in (x3)</a></li>
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'green_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'blue_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'red_iteration':8
+                ,'green_iteration':8
+                ,'blue_iteration':8
+                ,'iterations':8
+                ,'samples_per_pixel':3
+                ,'scale':0.025/4/3
+            });">Last Iteration, Threshold, Higher Iterations, Oversampled, Zoom in (x3)</a></li>
+            
             <li><a href="javascript:graph_it({'transformation_callback':function(o){
                 o.new_x = Math.sin(o.x**2-o.y**2-1);
                 o.new_y = 2*o.x*o.y;                                                                        
-            }});">Sine on x transformation</a></li>                                  
+            }});">Sine on x transformation</a></li>
+            
+            <li><a href="javascript:graph_it({'transformation_callback':function(o){
+                    o.new_x = Math.sin(o.x**2-o.y**2-1);
+                    o.new_y = 2*o.x*o.y;                                                                        
+                }
+                ,'samples_per_pixel':2
+            });">Sine on x transformation, oversampled x2</a></li>  
+
+            <li><a href="javascript:graph_it({'transformation_callback':function(o){
+                    o.new_x = Math.sin(o.x**2-o.y**2-1);
+                    o.new_y = 2*o.x*o.y;                                                                        
+                }
+                ,'samples_per_pixel':5
+            });">Sine on x transformation, oversampled x5</a></li>  
+
+            <li><a href="javascript:graph_it({'transformation_callback':function(o){
+                o.new_x = Math.sin(o.x**2-o.y**2-1);
+                o.new_y = Math.sin(2*o.x*o.y);                                                                        
+            }});">Sine on both transformations</a></li>
+
+            <li><a href="javascript:graph_it({'red_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'green_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'blue_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'red_iteration':2
+                ,'green_iteration':2
+                ,'blue_iteration':2
+                ,'iterations':2
+                ,'samples_per_pixel':2
+                ,'scale':0.025*2
+                ,'transformation_callback':function(o){
+                    o.new_x = o.x+Math.sin(o.y);
+                    o.new_y = o.y+Math.sin(o.x);                                                                        
+                }
+            });">x=x+sin(y); y=y+sin(x); </a></li>
+            <li><a href="javascript:i=2;graph_it({'red_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+                ,'green_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'blue_callback':function(o){
+                        return (o.velocity > o.luminosity) ? 0 : 255;
+                    }
+                ,'red_iteration':i
+                ,'green_iteration':i
+                ,'blue_iteration':i
+                ,'iterations':i
+                ,'samples_per_pixel':2
+                ,'scale':0.025*2
+                ,'transformation_callback':function(o){
+                    o.new_x = ((o.x/16)**2+(o.y/16)**2) * (o.x+Math.sin(o.y));
+                    o.new_y = ((o.x/16)**2+(o.y/16)**2) * (o.y+Math.sin(o.x));                                                                        
+            }});">Latest experiment</a></li>   
+            <li><a href="javascript:i=3;graph_it({'red_iteration':i
+                ,'green_iteration':i-1
+                ,'blue_iteration':i-2
+                ,'iterations':i
+                ,'samples_per_pixel':2
+                ,'scale':0.025*2
+                ,'transformation_callback':function(o){
+                    o.new_x = ((o.x/16)**2+(o.y/16)**2) * (o.x+Math.sin(o.y))+Math.sin(o.y*2);
+                    o.new_y = ((o.x/16)**2+(o.y/16)**2) * (o.y+Math.sin(o.x))+Math.sin(o.x*2);                                                                        
+            }});">Even Later experiment</a></li>   
         </ul>
     </body>
 </html>

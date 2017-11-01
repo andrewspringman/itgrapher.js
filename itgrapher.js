@@ -1,3 +1,5 @@
+already_resized = false;
+
 //graph iterative transformation
 function graph_it(params={})
 {
@@ -38,41 +40,47 @@ function graph_it(params={})
     }                                                                                                : params.velocity_callback;
 
     //set up canvas
-    if (this.use_screen_size == true)
+    if (already_resized == false )
     {
-        this.width  = $(window).width();
-        this.height = $(window).height()        
-    }
-    else
-    {
-        this.scale  /=  this.enlargement_factor;
-        this.width  =     this.enlargement_factor
-                        * this.dpi
-                        * (   (this.aspect_ratio>1)
-                            ? this.long_edge_inches
-                            : this.long_edge_inches * this.aspect_ratio   );
-        this.height =   this.enlargement_factor
-                      * this.dpi
-                      *   (   (this.aspect_ratio>1)
-                            ? this.long_edge_inches / this.aspect_ratio
-                            : this.long_edge_inches                       );
-    }
-    this.canvas     = document.getElementById('canvas');
-    this.ctx        = canvas.getContext('2d');
-    canvas.width    = this.width;
-    canvas.height   = this.height;
-    if (this.use_screen_size == false)
-    {
-        if ( this.aspect_ratio < ($(window).width() / $(window).height()))
+        if (this.use_screen_size == true)
         {
-            this.canvas.style.width='100vw';
+            this.width  = $(window).width();
+            this.height = $(window).height();       
         }
         else
         {
-            this.canvas.style.height='100vh';
+            this.scale  /=  this.enlargement_factor;
+            this.width  =     this.enlargement_factor
+                            * this.dpi
+                            * (   (this.aspect_ratio>1)
+                                ? this.long_edge_inches
+                                : this.long_edge_inches * this.aspect_ratio   );
+            this.height =   this.enlargement_factor
+                          * this.dpi
+                          *   (   (this.aspect_ratio>1)
+                                ? this.long_edge_inches / this.aspect_ratio
+                                : this.long_edge_inches                       );
         }
+        this.canvas     = document.getElementById('canvas');
+        this.ctx        = canvas.getContext('2d');
+        if (already_resized == false || this.use_screen_size == false){
+            canvas.width    = this.width;
+            canvas.height   = this.height;
+        }
+        if (this.use_screen_size == false)
+        {
+            if ( this.aspect_ratio < ($(window).width() / $(window).height()))
+            {
+                this.canvas.style.width='100vw';
+            }
+            else
+            {
+                this.canvas.style.height='100vh';
+            }
+        }
+        this.ImageData = this.ctx.createImageData(this.width, this.height);
+        already_resized = true;
     }
-    this.ImageData = this.ctx.createImageData(this.width, this.height);
 
     //render
     this.original_x = this.original_y = this.image_x =this.image_y = 0;
