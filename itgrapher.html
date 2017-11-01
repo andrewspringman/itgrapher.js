@@ -1,11 +1,71 @@
-<html>
+ <html>
     <head>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="itgrapher.js"></script>
     </head>
-    <body style="margin: 0; padding: 0; background-color:black">
+    <body style="margin: 0; padding: 0; background-color:black; color:white;">
+        <!--img id="spinner" style="display:none;" src="spinner.gif"-->
         <canvas id="canvas"></canvas>
+        <h1>ITGrapher.js</h1>
+        <h2>Iterative Transformation Grapher JavaScript</h2>
+        Click on a link below to render different images.
+        <ul>
+            <li><a href="javascript:graph_it();">Default Settings</a></li>
+            <li><a href="javascript:graph_it({'scale':0.025/4/2});">Zoom in (x2)</a></li>
+            <li><a href="javascript:graph_it({'color_map_callback':
+                function(colors)
+                {            
+                    colors.red_value = colors.green_value 
+                                     = colors.blue_value 
+                                     = (   colors.red_value 
+                                         * colors.green_value
+                                         * colors.blue_value  ) ** (1/3);
+
+                }
+            });">Greyscale</a></li>
+            <li><a href="javascript:graph_it({'red_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'green_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'blue_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            });">Thresholds</a></li>
+            <li><a href="javascript:graph_it({'red_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'green_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'blue_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'red_iteration':4, 'green_iteration':4, 'blue_iteration':4
+            });">Last Iteration, Threshold</a></li>
+            <li><a href="javascript:graph_it({'red_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'green_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'blue_callback':function(o){
+                    return (o.velocity > o.luminosity) ? 0 : 255;
+                }
+            ,'red_iteration':12
+            ,'green_iteration':12
+            ,'blue_iteration':12
+            ,'iterations':12
+            ,'samples_per_pixel':3
+            ,'scale':0.025/4/3
+        });">Last Iteration, Threshold, Higher Iterations, Oversampled, Zoom in (x3)</a></li>
+            <li><a href="javascript:graph_it({'transformation_callback':function(o){
+                o.new_x = Math.sin(o.x**2-o.y**2-1);
+                o.new_y = 2*o.x*o.y;                                                                        
+            }});">Sine on x transformation</a></li>                                  
+        </ul>
     </body>
 </html>
