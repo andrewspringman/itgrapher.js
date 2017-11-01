@@ -27,6 +27,7 @@ This project is licensed under the MIT License
 
 * ~~Put on GitHub~~
 * ~~Give examples in callbacks~~
+* Try saving examples in CodePen
 * Open results in separate window
 * Test app cache with [SSL in MAMP](https://stackoverflow.com/questions/6318467/configuring-mamp-for-ssl)
 * Figure out window re-sizing logic
