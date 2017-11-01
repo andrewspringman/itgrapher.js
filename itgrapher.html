@@ -12,12 +12,16 @@
         <h2>Iterative Transformation Grapher JavaScript</h2>
         Click on a link below to render different images.
         <ul>
+            
+            <!-- Default Settings Example -->
             <li><a href="javascript:graph_it();"
             >Default Settings</a></li>
             
+            <!-- Zoom in (x2) Example -->
             <li><a href="javascript:graph_it({'scale':0.025/4/2});"
             >Zoom in (x2)</a></li>
             
+            <!-- Greyscale Example -->
             <li><a href="javascript:graph_it({'color_map_callback':
                 function(colors)
                 {            
@@ -30,6 +34,7 @@
                 }
             });">Greyscale</a></li>
             
+            <!-- Thresholds Example -->
             <li><a href="javascript:graph_it({'red_callback':function(o){
                         return (o.velocity > o.luminosity) ? 0 : 255;
                     }
@@ -41,6 +46,7 @@
                     }
             });">Thresholds</a></li>
             
+            <!-- Last Iteration Example -->
             <li><a href="javascript:graph_it({'red_callback':function(o){
                         return (o.velocity > o.luminosity) ? 0 : 255;
                     }
@@ -53,6 +59,7 @@
                 ,'red_iteration':4, 'green_iteration':4, 'blue_iteration':4
             });">Last Iteration, Threshold</a></li>
             
+            <!-- Higher Iterations, Oversampled Example -->
             <li><a href="javascript:graph_it({'red_callback':function(o){
                         return (o.velocity > o.luminosity) ? 0 : 255;
                     }
@@ -70,30 +77,35 @@
                 ,'scale':0.025/4/3
             });">Last Iteration, Threshold, Higher Iterations, Oversampled, Zoom in (x3)</a></li>
             
+            <!-- Transformation Change Example -->
             <li><a href="javascript:graph_it({'transformation_callback':function(o){
                 o.new_x = Math.sin(o.x**2-o.y**2-1);
                 o.new_y = 2*o.x*o.y;                                                                        
             }});">Sine on x transformation</a></li>
             
+            <!-- Oversample Example -->
             <li><a href="javascript:graph_it({'transformation_callback':function(o){
                     o.new_x = Math.sin(o.x**2-o.y**2-1);
                     o.new_y = 2*o.x*o.y;                                                                        
                 }
                 ,'samples_per_pixel':2
-            });">Sine on x transformation, oversampled x2</a></li>  
-
+            });">Sine on x transformation, oversampled (2x2 per pixel)</a></li>  
+            
+            <!-- Arbitrary Oversample Example -->
             <li><a href="javascript:graph_it({'transformation_callback':function(o){
                     o.new_x = Math.sin(o.x**2-o.y**2-1);
                     o.new_y = 2*o.x*o.y;                                                                        
                 }
                 ,'samples_per_pixel':5
-            });">Sine on x transformation, oversampled x5</a></li>  
-
+            });">Sine on x transformation, oversampled (5x5 per pixel)</a></li>  
+            
+            <!-- Another transformation change example -->
             <li><a href="javascript:graph_it({'transformation_callback':function(o){
                 o.new_x = Math.sin(o.x**2-o.y**2-1);
                 o.new_y = Math.sin(2*o.x*o.y);                                                                        
             }});">Sine on both transformations</a></li>
-
+            
+            <!-- Tiling example -->
             <li><a href="javascript:graph_it({'red_callback':function(o){
                         return (o.velocity > o.luminosity) ? 0 : 255;
                     }
@@ -114,6 +126,8 @@
                     o.new_y = o.y+Math.sin(o.x);                                                                        
                 }
             });">x=x+sin(y); y=y+sin(x); </a></li>
+            
+            <!-- Relative scaling example -->
             <li><a href="javascript:i=2;graph_it({'red_callback':function(o){
                     return (o.velocity > o.luminosity) ? 0 : 255;
                 }
@@ -133,6 +147,8 @@
                     o.new_x = ((o.x/16)**2+(o.y/16)**2) * (o.x+Math.sin(o.y));
                     o.new_y = ((o.x/16)**2+(o.y/16)**2) * (o.y+Math.sin(o.x));                                                                        
             }});">Latest experiment</a></li>   
+            
+            <!-- Relative scaling example with color and smooth thresholds -->
             <li><a href="javascript:i=3;graph_it({'red_iteration':i
                 ,'green_iteration':i-1
                 ,'blue_iteration':i-2
@@ -143,6 +159,8 @@
                     o.new_x = ((o.x/16)**2+(o.y/16)**2) * (o.x+Math.sin(o.y))+Math.sin(o.y*2);
                     o.new_y = ((o.x/16)**2+(o.y/16)**2) * (o.y+Math.sin(o.x))+Math.sin(o.x*2);                                                                        
             }});">Even Later experiment</a></li>   
+            
+            <!-- ...and what will you try next? -->
         </ul>
     </body>
 </html>
